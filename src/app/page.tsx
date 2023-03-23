@@ -1,91 +1,22 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main className="prose prose-invert prose-headings:text-zinc-100 prose-headings:font-semibold prose-h1:text-3xl prose-h2:text-xl prose-h2:font-medium prose-p:text-zinc-400 prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/10 prose-pre:rounded-2xl prose-a:text-cyan-400">
+      <h1 id="authentication">Authentication</h1>
+      <p>You&#39;ll need to authenticate your requests to access any of the endpoints in the Protocol API. In this guide, we&#39;ll look at how authentication works. Protocol offers two ways to authenticate your API requests: Basic authentication and OAuth2 with a token.</p>
+      <h2 id="basic-authentication">Basic authentication</h2>
+      <p>With basic authentication, you use your username and password to authenticate your HTTP requests. Unless you have a very good reason, you probably shouldn&#39;t use basic auth. Here&#39;s how to authenticate using cURL:</p>
+      <pre><code className="language-bash">curl https://api.protocol.chat/v1/conversations \
+        -u username:password
+      </code></pre>
+      <p>Please don&#39;t commit your Protocol password to GitHub!</p>
+      <h2 id="oauth2-with-bearer-token">OAuth2 with bearer token</h2>
+      <p>The recommended way to authenticate with the Protocol API is by using OAuth2. When establishing a connection using OAuth2, you will need your access token — you will find it in the <a href="#">Protocol dashboard</a> under API settings. Here&#39;s how to add the token to the request header using cURL:</p>
+      <pre><code className="language-bash">curl https://api.protocol.chat/v1/conversations \
+        -H &quot;Authorization: Bearer token&quot;
+      </code></pre>
+      <p>Always keep your token safe and reset it if you suspect it has been compromised.</p>
+      <h2 id="using-an-sdk">Using an SDK</h2>
+      <p>If you use one of our official SDKs, you won&#39;t have to worry about any of the above — fetch your access token from the <a href="#">Protocol dashboard</a> under API settings, and the client library will take care of the rest. All the client libraries use OAuth2 behind the scenes.</p>
     </main>
   )
 }
